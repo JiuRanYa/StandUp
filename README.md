@@ -1,7 +1,37 @@
-# Tauri + React + Typescript
+## SedentaryReminder: 你的 macOS 久坐提醒小助手
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+**SedentaryReminder** 是一款简洁易用的 macOS 应用，帮助你养成良好的工作习惯，避免久坐带来的健康问题。
 
-## Recommended IDE Setup
+### 功能特点
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+* **自定义提醒时间间隔:** 设置适合你自己的工作节奏，例如每隔 30 分钟、45 分钟或 1 小时提醒一次。
+* **灵活的休息时长:** 选择短暂休息或稍作放松，自定义休息时长，例如 5 分钟、10 分钟或 15 分钟。
+* **多种提醒方式:** 提供多种提醒方式，包括桌面通知、声音提示、以及可选的短暂屏幕锁定。
+* **简洁美观的界面:**  操作简单直观，方便你快速设置和管理提醒。
+* **轻量级应用:**  资源占用极低，不会影响你的工作效率。
+
+### 使用场景
+
+* **长时间伏案工作的上班族:**  避免久坐带来的颈椎病、腰椎间盘突出等健康问题。
+* **专注学习的学生党:**  帮助你保持专注，提高学习效率。
+* **热爱游戏的玩家:**  提醒你适时休息，保护视力和身体健康。
+
+### 下载与安装
+
+* **从 [Releases](链接到你的 Release 页面) 下载最新版本的 dmg 文件。**
+* **双击 dmg 文件，将 SedentaryReminder 拖拽到应用程序文件夹中。**
+
+### 使用方法
+
+1. 打开 SedentaryReminder。
+2. 在菜单栏找到 SedentaryReminder 图标。
+3. 点击图标，设置提醒时间间隔和休息时长。
+4. 点击 "开始提醒"，即可开启久坐提醒功能。
+
+### 贡献
+
+欢迎提交 issue 或 pull request，为 SedentaryReminder 的发展贡献力量！
+
+### 许可证
+
+SedentaryReminder 基于 [MIT 许可证](链接到你的 LICENSE 文件) 开源。 
