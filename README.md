@@ -1,41 +1,41 @@
 ## StandUp
 
-你的 macOS 久坐提醒小助手  🪑⏰
+Your macOS Sitting Reminder Assistant 🪑⏰
 
 <img src="./public/readme.jpg" alt="alt text" width="780" height="250">
 
-**StandUp** 是一款简洁易用的 macOS 应用，帮助你养成良好的工作习惯，避免久坐带来的健康问题。
+**StandUp** is a simple and easy-to-use macOS application that helps you develop good work habits and avoid health problems caused by prolonged sitting.
 
-### ✨ 功能特点
+### ✨ Features
 
-* **自定义提醒时间间隔:** ⏱️ 设置适合你自己的工作节奏，例如每隔 30 分钟、45 分钟或 1 小时提醒一次。
-* **灵活的休息时长:** ⏱️ 选择短暂休息或稍作放松，自定义休息时长，例如 5 分钟、10 分钟或 15 分钟。
-* **多种提醒方式:** 🔔 提供多种提醒方式，包括桌面通知、声音提示、以及可选的短暂屏幕锁定。
-* **简洁美观的界面:**  🖥️ 操作简单直观，方便你快速设置和管理提醒。
-* **轻量级应用:**  🪶 资源占用极低，不会影响你的工作效率。
+* **Customizable Reminder Intervals:** ⏱️ Set a work rhythm that suits you, such as reminders every 30 minutes, 45 minutes, or 1 hour.
+* **Flexible Break Durations:** ⏱️ Choose short breaks or longer relaxation periods, customize break durations like 5 minutes, 10 minutes, or 15 minutes.
+* **Multiple Reminder Methods:** 🔔 Offers various reminder methods, including desktop notifications, sound alerts, and optional brief screen locks.
+* **Simple and Attractive Interface:** 🖥️ Easy and intuitive operation, convenient for quick setup and management of reminders.
+* **Lightweight Application:** 🪶 Extremely low resource usage, won't affect your work efficiency.
 
-### 🎮 使用场景  
+### 🎮 Use Cases
 
-* **长时间伏案工作的上班族:**  💼 避免久坐带来的颈椎病、腰椎间盘突出等健康问题。
-* **专注学习的学生党:**  📚 帮助你保持专注，提高学习效率。
-* **热爱游戏的玩家:**  🕹️ 提醒你适时休息，保护视力和身体健康。
+* **Office Workers with Long Sitting Hours:** 💼 Avoid health issues like cervical spondylosis and lumbar disc herniation caused by prolonged sitting.
+* **Focused Students:** 📚 Help maintain concentration and improve study efficiency.
+* **Gaming Enthusiasts:** 🕹️ Remind you to take timely breaks, protecting your eyesight and overall health.
 
-### 📥 下载与安装
+### 📥 Download and Installation
 
-* **从 [Releases](链接到你的 Release 页面) 下载最新版本的 dmg 文件。**
-* **双击 dmg 文件，将 StandUp 拖拽到应用程序文件夹中。**
+* **Download the latest version of the dmg file from [Releases](link to your Release page).**
+* **Double-click the dmg file and drag StandUp to your Applications folder.**
 
-### 🖱️ 使用方法
+### 🖱️ How to Use
 
-1. 打开 StandUp。
-2. 在菜单栏找到 StandUp 图标。
-3. 点击图标，设置提醒时间间隔和休息时长。
-4. 点击 "开始提醒"，即可开启久坐提醒功能。
+1. Open StandUp.
+2. Find the StandUp icon in the menu bar.
+3. Click the icon to set reminder intervals and break durations.
+4. Click "Start Reminder" to enable the sitting reminder function.
 
-### 🤝 贡献 
+### 🤝 Contribution
 
-欢迎提交 issue 或 pull request，为 StandUp 的发展贡献力量！
+Welcome to submit issues or pull requests to contribute to the development of StandUp!
 
-### 📝 许可证
+### 📝 License
 
-StandUp 基于 [MIT 许可证](./LICENSE) 开源。 
+StandUp is open-sourced under the [MIT License](./LICENSE).
