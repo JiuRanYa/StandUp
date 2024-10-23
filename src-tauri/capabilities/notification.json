@@ -1,0 +1,12 @@
+{
+  "$schema": "../gen/schemas/macOS-schema.json",
+  "identifier": "notification-capability",
+  "description": "Capability for the notification",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "notification:default",
+    "notification:allow-is-permission-granted"
+  ]
+}

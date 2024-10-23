@@ -1,0 +1,12 @@
+{
+  "$schema": "../gen/schemas/macOS-schema.json",
+  "identifier": "dialog-capability",
+  "description": "Capability for the dialog",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "dialog:allow-open",
+    "dialog:allow-message"
+  ]
+}
