@@ -1,8 +1,10 @@
-## SedentaryReminder: 你的 macOS 久坐提醒小助手  🪑⏰
+## StandUp
 
-![alt text](./public/readme.jpg)
+你的 macOS 久坐提醒小助手  🪑⏰
 
-**SedentaryReminder** 是一款简洁易用的 macOS 应用，帮助你养成良好的工作习惯，避免久坐带来的健康问题。
+<img src="./public/readme.jpg" alt="alt text" width="780" height="250">
+
+**StandUp** 是一款简洁易用的 macOS 应用，帮助你养成良好的工作习惯，避免久坐带来的健康问题。
 
 ### 功能特点  ✨
 
@@ -21,19 +23,19 @@
 ### 下载与安装  📥
 
 * **从 [Releases](链接到你的 Release 页面) 下载最新版本的 dmg 文件。**
-* **双击 dmg 文件，将 SedentaryReminder 拖拽到应用程序文件夹中。**
+* **双击 dmg 文件，将 StandUp 拖拽到应用程序文件夹中。**
 
 ### 使用方法  🖱️
 
-1. 打开 SedentaryReminder。
-2. 在菜单栏找到 SedentaryReminder 图标。
+1. 打开 StandUp。
+2. 在菜单栏找到 StandUp 图标。
 3. 点击图标，设置提醒时间间隔和休息时长。
 4. 点击 "开始提醒"，即可开启久坐提醒功能。
 
 ### 贡献  🤝
 
-欢迎提交 issue 或 pull request，为 SedentaryReminder 的发展贡献力量！
+欢迎提交 issue 或 pull request，为 StandUp 的发展贡献力量！
 
 ### 许可证  📝
 
-SedentaryReminder 基于 [MIT 许可证](./LICENSE) 开源。 
+StandUp 基于 [MIT 许可证](./LICENSE) 开源。 
