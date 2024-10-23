@@ -37,5 +37,3 @@
 ### 许可证  📝
 
 SedentaryReminder 基于 [MIT 许可证](./LICENSE) 开源。 
-
-**希望这些icon能让你的README更生动！** 
