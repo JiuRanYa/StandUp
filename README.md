@@ -1,6 +1,6 @@
 ## SedentaryReminder: 你的 macOS 久坐提醒小助手  🪑⏰
 
-![alt text]('./public/readme.jpg')
+![alt text](./public/readme.jpg)
 
 **SedentaryReminder** 是一款简洁易用的 macOS 应用，帮助你养成良好的工作习惯，避免久坐带来的健康问题。
 
@@ -36,6 +36,6 @@
 
 ### 许可证  📝
 
-SedentaryReminder 基于 [MIT 许可证]('./LICENSE') 开源。 
+SedentaryReminder 基于 [MIT 许可证](./LICENSE) 开源。 
 
 **希望这些icon能让你的README更生动！** 
