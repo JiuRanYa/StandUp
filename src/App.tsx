@@ -10,9 +10,9 @@ function App() {
   const [seconds, setSeconds] = useState(1800); // 默认30分钟 (1800秒)
   const [isRunning, setIsRunning] = useState(false);
   const [remainingTime, setRemainingTime] = useState(seconds);
+  const [notificationCount, setNotificationCount] = useState(0);
 
   useEffect(() => {
-    let timer: number | undefined;
     let countdownTimer: number | undefined;
 
     async function setupNotification() {
@@ -25,19 +25,15 @@ function App() {
 
       if (permissionGranted && isRunning) {
         setRemainingTime(seconds);
-        timer = setTimeout(() => {
-          sendNotification({
-            title: '久坐提醒',
-            body: `您已久坐${seconds}秒，请起身活动一下！`
-          });
-          setIsRunning(false);
-        }, seconds * 1000);
-
         countdownTimer = setInterval(() => {
           setRemainingTime((prevTime) => {
             if (prevTime <= 1) {
-              clearInterval(countdownTimer);
-              return 0;
+              sendNotification({
+                title: '久坐提醒',
+                body: `您已久坐${seconds}秒，请起身活动一下！这是第${notificationCount + 1}次提醒。`
+              });
+              setNotificationCount(prev => prev + 1);
+              return seconds; // 重新开始倒计时
             }
             return prevTime - 1;
           });
@@ -48,10 +44,9 @@ function App() {
     setupNotification();
 
     return () => {
-      if (timer) clearTimeout(timer);
       if (countdownTimer) clearInterval(countdownTimer);
     };
-  }, [seconds, isRunning]);
+  }, [seconds, isRunning, notificationCount]);
 
   const progress = ((seconds - remainingTime) / seconds) * 100;
 
