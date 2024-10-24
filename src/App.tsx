@@ -1,59 +1,14 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import {
-  isPermissionGranted,
-  requestPermission,
-  sendNotification,
-} from '@tauri-apps/plugin-notification';
 import { Link } from 'react-router-dom';
+import { useTimerStore } from './store/timer';
 
 function App() {
-  const [seconds, setSeconds] = useState(1800);
-  const [isRunning, setIsRunning] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(seconds);
-  const [notificationCount, setNotificationCount] = useState(0);
-
-  useEffect(() => {
-    let countdownTimer: number | undefined;
-
-    async function setupNotification() {
-      let permissionGranted = await isPermissionGranted();
-
-      if (!permissionGranted) {
-        const permission = await requestPermission();
-        permissionGranted = permission === 'granted';
-      }
-
-      if (permissionGranted && isRunning) {
-        setRemainingTime(seconds);
-        countdownTimer = setInterval(() => {
-          setRemainingTime((prevTime) => {
-            if (prevTime <= 1) {
-              sendNotification({
-                title: '久坐提醒',
-                body: `您已久坐${seconds}秒，请起身活动一下！这���第${notificationCount + 1}次提醒。`
-              });
-              setNotificationCount(prev => prev + 1);
-              return seconds; // 重新开始倒计时
-            }
-            return prevTime - 1;
-          });
-        }, 1000);
-      }
-    }
-
-    setupNotification();
-
-    return () => {
-      if (countdownTimer) clearInterval(countdownTimer);
-    };
-  }, [seconds, isRunning, notificationCount]);
+  const { seconds, isRunning, remainingTime, setSeconds, setIsRunning, setRemainingTime, startTimer, stopTimer } = useTimerStore();
 
   const progress = isRunning ? ((seconds - remainingTime) / seconds) * 100 : 100;
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-
       <main className="max-w-2xl mx-auto">
         <div className="mb-12 flex justify-center">
           <div
@@ -102,8 +57,12 @@ function App() {
         <button
           className={`btn btn-primary btn-sm w-full text-xs`}
           onClick={() => {
-            setIsRunning(!isRunning);
-            if (!isRunning) setRemainingTime(seconds);
+            if (isRunning) {
+              stopTimer();
+            } else {
+              setRemainingTime(seconds);
+              startTimer();
+            }
           }}
         >
           {isRunning ? '停止提醒' : '开始提醒'}

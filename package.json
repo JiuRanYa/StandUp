@@ -18,7 +18,8 @@
     "postcss-cli": "^11.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^6.27.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@radix-ui/react-slider": "^1.0.0",
