@@ -31,7 +31,7 @@ function App() {
             if (prevTime <= 1) {
               sendNotification({
                 title: '久坐提醒',
-                body: `您已久坐${seconds}秒，请起身活动一下！这是第${notificationCount + 1}次提醒。`
+                body: `您已久坐${seconds}秒，请起身活动一下！这���第${notificationCount + 1}次提醒。`
               });
               setNotificationCount(prev => prev + 1);
               return seconds; // 重新开始倒计时
@@ -79,7 +79,7 @@ function App() {
           <input
             type="range"
             min="60"
-            max="7200"
+            max="10800"
             value={seconds}
             onChange={(e) => {
               setSeconds(Number(e.target.value));
@@ -90,7 +90,8 @@ function App() {
           <div className="flex justify-between text-sm text-gray-500 mt-2">
             <span>1分钟</span>
             <span>60分钟</span>
-            <span>120分钟</span>
+            <span>90分钟</span>
+            <span>180分钟</span>
           </div>
         </div>
 
