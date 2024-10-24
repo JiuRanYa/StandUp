@@ -6,8 +6,9 @@ use tauri_plugin_autostart::MacosLauncher;
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
-            let quit_i = MenuItem::with_id(app, "exit", "exit", true, None::<&str>)?;
-            let menu = Menu::with_items(app, &[&quit_i])?;
+            let quit_i = MenuItem::with_id(app, "exit", "Exit", true, None::<&str>)?;
+            let settings_i = MenuItem::with_id(app, "settings", "Settings", true, None::<&str>)?;
+            let menu = Menu::with_items(app, &[&settings_i, &quit_i])?;
 
             let _tray = TrayIconBuilder::new()
                 .icon(app.default_window_icon().unwrap().clone())
@@ -16,6 +17,9 @@ pub fn run() {
                 .on_menu_event(move |app, event| {
                     if event.id() == "exit" {
                         app.exit(0)
+                    }
+                    if event.id() == "settings" {
+                        let _show = app.show();
                     }
                 })
                 .build(app)?;
