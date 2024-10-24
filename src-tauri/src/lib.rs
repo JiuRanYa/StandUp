@@ -1,5 +1,6 @@
 use tauri::menu::{Menu, MenuItem};
 use tauri::tray::TrayIconBuilder;
+use tauri::Manager;
 use tauri_plugin_autostart::MacosLauncher;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -19,7 +20,7 @@ pub fn run() {
                         app.exit(0)
                     }
                     if event.id() == "settings" {
-                        let _show = app.show();
+                        let _show = app.get_webview_window("main").unwrap().show();
                     }
                 })
                 .build(app)?;

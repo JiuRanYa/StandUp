@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTimerStore } from './store/timer';
 
 function App() {
-  const { seconds, isRunning, remainingTime, setSeconds, setIsRunning, setRemainingTime, startTimer, stopTimer } = useTimerStore();
+  const { seconds, isRunning, remainingTime, setSeconds, setRemainingTime, startTimer, stopTimer } = useTimerStore();
 
   const progress = isRunning ? ((seconds - remainingTime) / seconds) * 100 : 100;
 
@@ -15,11 +15,11 @@ function App() {
             className={`radial-progress ${isRunning ? 'text-blue-500' : 'text-green-500'}`}
             style={{
               "--value": progress,
-              "--size": "16rem",
+              "--size": "10rem",
               "--thickness": "2px"
             } as React.CSSProperties}
           >
-            <span className="text-3xl font-semibold">
+            <span className="text-xl font-semibold">
               {isRunning
                 ? `${Math.floor(remainingTime / 60)}:${(remainingTime % 60).toString().padStart(2, '0')}`
                 : "准备就绪"}
