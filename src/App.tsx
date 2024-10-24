@@ -61,7 +61,6 @@ function App() {
       </Link>
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title text-primary justify-center">久坐提醒</h2>
           <div className="flex justify-center my-4">
             <div
               className="radial-progress text-primary"
@@ -89,7 +88,7 @@ function App() {
                 setSeconds(Number(e.target.value));
                 if (!isRunning) setRemainingTime(Number(e.target.value));
               }}
-              className="range range-primary"
+              className="range range-xs range-primary"
             />
             <div className="w-full flex justify-between text-xs px-2">
               <span>1分钟</span>
