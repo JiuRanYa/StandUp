@@ -1,0 +1,10 @@
+{
+  "$schema": "../gen/schemas/capabilities.json",
+  "identifier": "auto-start",
+  "description": "Capability for the autostart",
+  "windows": ["main"],
+  "permissions": [
+    "autostart:allow-is-enabled",
+    "autostart:default"
+  ]
+}
