@@ -13,7 +13,8 @@
       {
         "title": "StandUp",
         "width": 400,
-        "height": 570
+        "height": 570,
+        "decorations": false
       }
     ],
     "security": {

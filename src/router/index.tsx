@@ -1,14 +1,21 @@
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Settings from "../pages/settings";
-import { createBrowserRouter } from "react-router-dom";
+import Layout from "../layout";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
-    },
-    {
-        path: "/settings",
-        element: <Settings />,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <App />,
+            },
+            {
+                path: "settings",
+                element: <Settings />,
+            },
+        ],
     },
 ]);
