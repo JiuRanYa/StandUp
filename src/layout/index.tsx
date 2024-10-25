@@ -6,7 +6,7 @@ import { listen } from '@tauri-apps/api/event';
 import { useTimerStore } from '../store/timer';
 
 const Layout: React.FC = () => {
-    const { startTimer, stopTimer } = useTimerStore();
+    const { startTimer, pauseTimer } = useTimerStore();
 
     useEffect(() => {
         const startListener = listen('start-timer', () => {
@@ -14,14 +14,14 @@ const Layout: React.FC = () => {
         });
 
         const pauseListener = listen('pause-timer', () => {
-            stopTimer();
+            pauseTimer();
         });
 
         return () => {
             startListener.then(unlisten => unlisten());
             pauseListener.then(unlisten => unlisten());
         };
-    }, [startTimer, stopTimer]);
+    }, [startTimer, pauseTimer]);
     return (
         <div className="flex flex-col min-h-[570px] h-full rounded-lg overflow-hidden border">
             <Header />

@@ -49,7 +49,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
     incrementNotificationCount: () => set((state) => ({ notificationCount: state.notificationCount + 1 })),
     setNotificationMethod: (method) => set({ notificationMethod: method }),
     startTimer: async () => {
-        const { seconds, intervalId, isRunning, remainingTime } = get();
+        const { intervalId, isRunning } = get();
 
         if (isRunning) return;
 

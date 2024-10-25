@@ -118,7 +118,7 @@ function App() {
           {isRunning ? '暂停计时' : '开始计时'}
         </button>
         <button
-          className={`btn btn-secondary btn-sm flex-1 text-xs`}
+          className={`btn btn-light btn-sm flex-1 text-xs`}
           onClick={handleReset}
         >
           重置时间
