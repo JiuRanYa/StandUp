@@ -10,6 +10,12 @@
     "core:window:allow-hide",
     "shell:allow-open",
     "core:window:default",
-    "core:window:allow-start-dragging"
+    "core:window:allow-start-dragging",
+    "fs:default",
+    "fs:write-files",
+    {
+      "identifier": "fs:scope",
+      "allow": [{ "path": "$CONFIG" }, { "path": "$CONFIG/**" }]
+    }
   ]
 }
