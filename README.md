@@ -42,6 +42,4 @@ StandUp is a simple yet powerful sedentary reminder application designed to help
 
 If you encounter any issues while using the app or have any suggestions for improvement, please feel free to contact us through:
 
-- 📧 Email: support@standup-app.com
-- 🐦 Twitter: [@StandUpApp](https://twitter.com/StandUpApp)
-- 
+- 📧 Email: siyuantong7@gmail.com
