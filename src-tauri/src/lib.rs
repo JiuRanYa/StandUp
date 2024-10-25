@@ -1,8 +1,8 @@
+use std::process::Command;
 use tauri::menu::{Menu, MenuItem};
 use tauri::tray::TrayIconBuilder;
 use tauri::Manager;
 use tauri_plugin_autostart::MacosLauncher;
-use std::process::Command;
 
 #[tauri::command]
 fn lock_screen() -> Result<(), String> {

@@ -23,6 +23,13 @@ function App() {
 
   const progress = isRunning ? ((seconds - remainingTime) / seconds) * 100 : 100;
 
+  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value);
+    const roundedValue = Math.round(value / 60) * 60;
+    setSeconds(roundedValue);
+    if (!isRunning) setRemainingTime(roundedValue);
+  };
+
   return (
     <main className="max-w-2xl mx-auto">
       <div className="mb-12 flex justify-center">
@@ -64,11 +71,9 @@ function App() {
           type="range"
           min="60"
           max="10800"
+          step="60"
           value={seconds}
-          onChange={(e) => {
-            setSeconds(Number(e.target.value));
-            if (!isRunning) setRemainingTime(Number(e.target.value));
-          }}
+          onChange={handleRangeChange}
           className="w-full range range-xs range-primary"
         />
         <div className="flex justify-between text-sm text-gray-500 mt-2">
