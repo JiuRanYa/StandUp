@@ -1,9 +1,25 @@
 import "./App.css";
 import { Link } from 'react-router-dom';
 import { useTimerStore } from './store/timer';
+import { useEffect, useRef } from 'react';
 
 function App() {
   const { seconds, isRunning, remainingTime, setSeconds, setRemainingTime, startTimer, stopTimer } = useTimerStore();
+  const hourRef = useRef<HTMLSpanElement>(null);
+  const minuteRef = useRef<HTMLSpanElement>(null);
+  const secondRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (hourRef.current && minuteRef.current && secondRef.current) {
+      const hours = Math.floor(remainingTime / 3600);
+      const minutes = Math.floor((remainingTime % 3600) / 60);
+      const seconds = remainingTime % 60;
+
+      hourRef.current.style.setProperty('--value', hours.toString());
+      minuteRef.current.style.setProperty('--value', minutes.toString());
+      secondRef.current.style.setProperty('--value', seconds.toString());
+    }
+  }, [remainingTime]);
 
   const progress = isRunning ? ((seconds - remainingTime) / seconds) * 100 : 100;
 
@@ -18,10 +34,24 @@ function App() {
             "--thickness": "2px"
           } as React.CSSProperties}
         >
-          <span className="text-xl font-semibold">
-            {isRunning
-              ? `${Math.floor(remainingTime / 60)}:${(remainingTime % 60).toString().padStart(2, '0')}`
-              : "准备就绪"}
+          <span className="text-xl font-semibold flex items-center">
+            {isRunning ? (
+              <div className="grid grid-flow-col gap-1 text-center auto-cols-max items-center">
+                <span className="countdown font-mono text-xl">
+                  <span ref={hourRef} style={{ "--value": 0 } as React.CSSProperties}></span>
+                </span>
+                :
+                <span className="countdown font-mono text-xl">
+                  <span ref={minuteRef} style={{ "--value": 0 } as React.CSSProperties}></span>
+                </span>
+                :
+                <span className="countdown font-mono text-xl">
+                  <span ref={secondRef} style={{ "--value": 0 } as React.CSSProperties}></span>
+                </span>
+              </div>
+            ) : (
+              "准备就绪"
+            )}
           </span>
         </div>
       </div>
