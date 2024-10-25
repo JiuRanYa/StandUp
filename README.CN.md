@@ -20,7 +20,7 @@ StandUp 是一款简单而强大的久坐提醒应用，旨在帮助您保持健
 ## 📸 应用预览
 
 <p align="center">
-  <img src="./public/demo.png" alt="StandUp Demo" width="850" height="600">
+  <img src="public/demo.jpg" alt="StandUp Demo" width="850" height="600">
 </p>
 
 ## 🚀 快速开始
