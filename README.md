@@ -22,7 +22,7 @@ StandUp is a simple yet powerful sedentary reminder application designed to help
 ## 📸 App Preview
 
 <p align="center">
-  <img src="./public/demo.png" alt="StandUp Demo" width="850" height="600">
+  <img src="public/demo.jpg" alt="StandUp Demo" width="850" height="600">
 </p>
 
 ## 🚀 Quick Start
