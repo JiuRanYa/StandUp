@@ -1,41 +1,47 @@
-## StandUp
+# 🧘 StandUp - Sedentary Reminder Assistant
 
-Your macOS Sitting Reminder Assistant 🪑⏰  [Download here](https://github.com/JiuRanYa/StandUp/blob/main/src-tauri/target/release/bundle/dmg/StandUp_0.1.0_aarch64.dmg)
+<p align="center">
+  <img src="public/logo.png" alt="StandUp Logo" width="200" height="200">
+</p>
 
-<img src="./public/demo.jpg" alt="alt text" width="780" height="250">
+[中文版](README.CN.md) | English
 
-**StandUp** is a simple and easy-to-use macOS application that helps you develop good work habits and avoid health problems caused by prolonged sitting.
+StandUp is a simple yet powerful sedentary reminder application designed to help you maintain healthy work habits and avoid health risks associated with prolonged sitting.
 
-### ✨ Features
+## ✨ Key Features
 
-* **Customizable Reminder Intervals:** ⏱️ Set a work rhythm that suits you, such as reminders every 30 minutes, 45 minutes, or 1 hour.
-* **Flexible Break Durations:** ⏱️ Choose short breaks or longer relaxation periods, customize break durations like 5 minutes, 10 minutes, or 15 minutes.
-* **Multiple Reminder Methods:** 🔔 Offers various reminder methods, including desktop notifications, sound alerts, and optional brief screen locks.
-* **Simple and Attractive Interface:** 🖥️ Easy and intuitive operation, convenient for quick setup and management of reminders.
-* **Lightweight Application:** 🪶 Extremely low resource usage, won't affect your work efficiency.
+- 🕒 Customizable reminder intervals: Set your preferred reminder time from 1 to 180 minutes.
+- 🔔 Diverse reminder methods:
+  - 💻 Desktop notifications
+  - 🔊 Sound alerts
+  - 🔒 Brief screen lock
+- 🚀 Auto-start on boot: Ensures you're always protected and never forget to start the app.
+- 🖥️ System tray: Convenient control to start or pause the timer anytime.
+- 🎨 Clean and elegant user interface: Focused on core functionality with intuitive operation.
 
-### 🎮 Use Cases
+## 📸 App Preview
 
-* **Office Workers with Long Sitting Hours:** 💼 Avoid health issues like cervical spondylosis and lumbar disc herniation caused by prolonged sitting.
-* **Focused Students:** 📚 Help maintain concentration and improve study efficiency.
-* **Gaming Enthusiasts:** 🕹️ Remind you to take timely breaks, protecting your eyesight and overall health.
+<p align="center">
+  <img src="./public/demo.png" alt="StandUp Demo" width="850" height="600">
+</p>
 
-### 📥 Download and Installation
+## 🚀 Quick Start
 
-* **Download the latest version of the dmg file from [Releases](link to your Release page).**
-* **Double-click the dmg file and drag StandUp to your Applications folder.**
+1. Download and install the StandUp application.
+2. Launch the app; it will automatically minimize to the system tray.
+3. Click the system tray icon to set your preferred reminder interval and method.
+4. Start working and let StandUp take care of your health!
 
-### 🖱️ How to Use
+## 💡 Usage Tips
 
-1. Open StandUp.
-2. Find the StandUp icon in the menu bar.
-3. Click the icon to set reminder intervals and break durations.
-4. Click "Start Reminder" to enable the sitting reminder function.
+- Experiment with different reminder intervals to find the setting that best suits your work rhythm.
+- Choose an appropriate reminder method based on your environment to ensure you don't disturb others.
+- Use the short break times to do simple stretching exercises for better results.
 
-### 🤝 Contribution
+## 🤝 Support and Feedback
 
-Welcome to submit issues or pull requests to contribute to the development of StandUp!
+If you encounter any issues while using the app or have any suggestions for improvement, please feel free to contact us through:
 
-### 📝 License
-
-StandUp is open-sourced under the [MIT License](./LICENSE).
+- 📧 Email: support@standup-app.com
+- 🐦 Twitter: [@StandUpApp](https://twitter.com/StandUpApp)
+- 
