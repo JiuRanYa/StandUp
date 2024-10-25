@@ -1,6 +1,6 @@
 ## StandUp
 
-Your macOS Sitting Reminder Assistant 🪑⏰
+Your macOS Sitting Reminder Assistant 🪑⏰  [Download here](https://github.com/JiuRanYa/StandUp/blob/main/src-tauri/target/release/bundle/dmg/StandUp_0.1.0_aarch64.dmg)
 
 <img src="./public/readme.jpg" alt="alt text" width="780" height="250">
 
