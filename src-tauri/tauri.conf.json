@@ -14,7 +14,9 @@
         "title": "StandUp",
         "width": 400,
         "height": 570,
-        "decorations": false
+        "decorations": false,
+        "transparent": true,
+        "shadow": false
       }
     ],
     "security": {

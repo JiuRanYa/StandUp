@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
+import { useTimerStore } from '../store/timer';
 
 export default function Settings() {
     const [isAutoStartEnabled, setIsAutoStartEnabled] = useState(false);
-    const [notificationMethod, setNotificationMethod] = useState('desktop');
+    const { notificationMethod, setNotificationMethod } = useTimerStore();
 
     useEffect(() => {
         checkAutoStartStatus();
@@ -26,7 +27,7 @@ export default function Settings() {
     };
 
     const handleNotificationMethodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setNotificationMethod(event.target.value);
+        setNotificationMethod(event.target.value as 'desktop' | 'sound' | 'screen_lock');
         // 这里可以添加保存通知方式设置的逻辑
     };
 

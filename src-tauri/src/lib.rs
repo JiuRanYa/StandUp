@@ -2,6 +2,21 @@ use tauri::menu::{Menu, MenuItem};
 use tauri::tray::TrayIconBuilder;
 use tauri::Manager;
 use tauri_plugin_autostart::MacosLauncher;
+use std::process::Command;
+
+#[tauri::command]
+fn lock_screen() -> Result<(), String> {
+    let output = Command::new("pmset")
+        .arg("displaysleepnow")
+        .output()
+        .map_err(|e| e.to_string())?;
+
+    if !output.status.success() {
+        return Err(String::from_utf8_lossy(&output.stderr).into_owned());
+    }
+
+    Ok(())
+}
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -26,6 +41,7 @@ pub fn run() {
                 .build(app)?;
             Ok(())
         })
+        .invoke_handler(tauri::generate_handler![lock_screen])
         .plugin(tauri_plugin_autostart::init(
             MacosLauncher::LaunchAgent,
             Some(vec!["--flag1", "--flag2"]),
