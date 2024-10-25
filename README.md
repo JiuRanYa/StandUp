@@ -8,6 +8,8 @@
 
 StandUp is a simple yet powerful sedentary reminder application designed to help you maintain healthy work habits and avoid health risks associated with prolonged sitting.
 
+[Download](https://github.com/JiuRanYa/StandUp/releases/download/v0.1.0/StandUp_0.1.0_aarch64.dmg)
+
 ## ✨ Key Features
 
 - 🕒 Customizable reminder intervals: Set your preferred reminder time from 1 to 180 minutes.
