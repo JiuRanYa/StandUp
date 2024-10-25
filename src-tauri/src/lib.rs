@@ -32,7 +32,7 @@ fn pause_timer(window: WebviewWindow) {
 pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
-            let quit_i = MenuItem::with_id(app, "exit", "退出StandUp", true, None::<&str>)?;
+            let quit_i = MenuItem::with_id(app, "exit", "退出", true, None::<&str>)?;
             let settings_i = MenuItem::with_id(app, "settings", "设置", true, None::<&str>)?;
             let start_timer_i = MenuItem::with_id(app, "start_timer", "开始计时", true, None::<&str>)?;
             let pause_timer_i = MenuItem::with_id(app, "pause_timer", "暂停计时", true, None::<&str>)?;
