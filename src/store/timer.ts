@@ -15,7 +15,7 @@ interface TimerState {
     incrementNotificationCount: () => void;
     setNotificationMethod: (method: 'desktop' | 'sound' | 'screen_lock') => void;
     startTimer: () => Promise<void>;
-    stopTimer: () => void;
+    pauseTimer: () => void;
     resetTimer: () => void;
 }
 
@@ -49,7 +49,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
     incrementNotificationCount: () => set((state) => ({ notificationCount: state.notificationCount + 1 })),
     setNotificationMethod: (method) => set({ notificationMethod: method }),
     startTimer: async () => {
-        const { seconds, intervalId, isRunning } = get();
+        const { seconds, intervalId, isRunning, remainingTime } = get();
 
         if (isRunning) return;
 
@@ -57,7 +57,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
             clearInterval(intervalId);
         }
 
-        set({ isRunning: true, remainingTime: seconds });
+        set({ isRunning: true });
         const newIntervalId = setInterval(() => {
             set((state) => {
                 if (state.remainingTime <= 1) {
@@ -83,9 +83,12 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         }, 1000);
         set({ intervalId: newIntervalId });
     },
-    stopTimer: () => {
-        const { resetTimer } = get();
-        resetTimer()
+    pauseTimer: () => {
+        const { intervalId } = get();
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        set({ isRunning: false, intervalId: null });
     },
     resetTimer: () => {
         const { seconds, intervalId } = get();

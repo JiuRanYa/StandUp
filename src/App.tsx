@@ -5,11 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 
 
 function App() {
-  const { seconds, isRunning, remainingTime, setSeconds, setRemainingTime, startTimer, stopTimer } = useTimerStore();
+  const { seconds, isRunning, remainingTime, setSeconds, setRemainingTime, startTimer, pauseTimer, resetTimer } = useTimerStore();
   const hourRef = useRef<HTMLSpanElement>(null);
   const minuteRef = useRef<HTMLSpanElement>(null);
   const secondRef = useRef<HTMLSpanElement>(null);
   const [progress, setProgress] = useState(100);
+  const [isReset, setIsReset] = useState(true);
 
   useEffect(() => {
     if (hourRef.current && minuteRef.current && secondRef.current) {
@@ -25,17 +26,23 @@ function App() {
     setTimeout(() => {
       if (isRunning) {
         setProgress(((seconds - remainingTime) / seconds) * 100);
-      } else {
+        setIsReset(false);
+      } else if (isReset) {
         setProgress(100);
       }
     }, 200)
-  }, [remainingTime, isRunning, seconds]);
+  }, [remainingTime, isRunning, seconds, isReset]);
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     const roundedValue = Math.round(value / 60) * 60;
     setSeconds(roundedValue);
     if (!isRunning) setRemainingTime(roundedValue);
+  };
+
+  const handleReset = () => {
+    resetTimer();
+    setIsReset(true);
   };
 
   return (
@@ -50,7 +57,9 @@ function App() {
           } as React.CSSProperties}
         >
           <span className="text-xl font-semibold flex items-center">
-            {isRunning ? (
+            {isReset ? (
+              "准备就绪"
+            ) : (
               <div className="grid grid-flow-col gap-1 text-center auto-cols-max items-center">
                 <span className="countdown font-mono text-xl">
                   <span ref={hourRef} style={{ "--value": 0 } as React.CSSProperties}></span>
@@ -64,8 +73,6 @@ function App() {
                   <span ref={secondRef} style={{ "--value": 0 } as React.CSSProperties}></span>
                 </span>
               </div>
-            ) : (
-              "准备就绪"
             )}
           </span>
         </div>
@@ -96,19 +103,27 @@ function App() {
         当前设置：{Math.round(seconds / 60)} 分钟
       </div>
 
-      <button
-        className={`btn btn-primary btn-sm w-full text-xs`}
-        onClick={() => {
-          if (isRunning) {
-            stopTimer();
-          } else {
-            setRemainingTime(seconds);
-            startTimer();
-          }
-        }}
-      >
-        {isRunning ? '停止提醒' : '开始提醒'}
-      </button>
+      <div className="flex space-x-2 mb-4">
+        <button
+          className={`btn btn-primary btn-sm flex-1 text-xs`}
+          onClick={() => {
+            if (isRunning) {
+              pauseTimer();
+            } else {
+              startTimer();
+              setIsReset(false);
+            }
+          }}
+        >
+          {isRunning ? '暂停计时' : '开始计时'}
+        </button>
+        <button
+          className={`btn btn-secondary btn-sm flex-1 text-xs`}
+          onClick={handleReset}
+        >
+          重置时间
+        </button>
+      </div>
 
       <Link to="/settings" className="block text-center mt-4 text-sm text-blue-500 hover:underline">
         设置
