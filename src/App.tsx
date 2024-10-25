@@ -1,13 +1,15 @@
 import "./App.css";
 import { Link } from 'react-router-dom';
 import { useTimerStore } from './store/timer';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 
 function App() {
   const { seconds, isRunning, remainingTime, setSeconds, setRemainingTime, startTimer, stopTimer } = useTimerStore();
   const hourRef = useRef<HTMLSpanElement>(null);
   const minuteRef = useRef<HTMLSpanElement>(null);
   const secondRef = useRef<HTMLSpanElement>(null);
+  const [progress, setProgress] = useState(100);
 
   useEffect(() => {
     if (hourRef.current && minuteRef.current && secondRef.current) {
@@ -19,9 +21,15 @@ function App() {
       minuteRef.current.style.setProperty('--value', minutes.toString());
       secondRef.current.style.setProperty('--value', seconds.toString());
     }
-  }, [remainingTime]);
 
-  const progress = isRunning ? ((seconds - remainingTime) / seconds) * 100 : 100;
+    setTimeout(() => {
+      if (isRunning) {
+        setProgress(((seconds - remainingTime) / seconds) * 100);
+      } else {
+        setProgress(100);
+      }
+    }, 200)
+  }, [remainingTime, isRunning, seconds]);
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
