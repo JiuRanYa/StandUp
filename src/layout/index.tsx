@@ -23,7 +23,7 @@ const Layout: React.FC = () => {
         };
     }, [startTimer, stopTimer]);
     return (
-        <div className="flex flex-col min-h-screen rounded-lg overflow-hidden shadow-lg border">
+        <div className="flex flex-col min-h-[570px] h-full rounded-lg overflow-hidden border">
             <Header />
             <div className="flex-grow p-8">
                 <Outlet />

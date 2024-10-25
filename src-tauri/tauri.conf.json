@@ -14,9 +14,12 @@
         "title": "StandUp",
         "width": 400,
         "height": 570,
+        "minHeight": 570,
+        "minWidth": 400,
         "decorations": false,
         "transparent": true,
-        "shadow": false
+        "shadow": false,
+        "resizable": false
       }
     ],
     "security": {
