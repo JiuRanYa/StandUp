@@ -40,9 +40,7 @@ StandUp 是一款简单而强大的久坐提醒应用，旨在帮助您保持健
 
 如果您在使用过程中遇到任何问题，或有任何改进建议，欢迎通过以下方式联系我们：
 
-- 📧 Email: support@standup-app.com
-- 🐦 Twitter: [@StandUpApp](https://twitter.com/StandUpApp)
-- 💬 GitHub Issues: [报告问题](https://github.com/standup-app/issues)
+- 📧 Email: siyuantong7@gmail.com
 
 ## 📄 许可证
 
