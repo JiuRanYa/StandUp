@@ -2,7 +2,7 @@
 
 Your macOS Sitting Reminder Assistant 🪑⏰  [Download here](https://github.com/JiuRanYa/StandUp/blob/main/src-tauri/target/release/bundle/dmg/StandUp_0.1.0_aarch64.dmg)
 
-<img src="./public/readme.jpg" alt="alt text" width="780" height="250">
+<img src="./public/demo.jpg" alt="alt text" width="780" height="250">
 
 **StandUp** is a simple and easy-to-use macOS application that helps you develop good work habits and avoid health problems caused by prolonged sitting.
 
