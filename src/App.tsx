@@ -39,7 +39,7 @@ function App() {
             setSeconds(Number(e.target.value));
             if (!isRunning) setRemainingTime(Number(e.target.value));
           }}
-          className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+          className="w-full range range-xs range-primary"
         />
         <div className="flex justify-between text-sm text-gray-500 mt-2">
           <span>1分钟</span>

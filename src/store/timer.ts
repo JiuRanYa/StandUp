@@ -19,7 +19,7 @@ interface TimerState {
   resetTimer: () => void;
 }
 
-async function sendUserNotification() {
+async function sendUserNotification(minite: number, notificationCount: number) {
   let permissionGranted = await isPermissionGranted();
 
   if (!permissionGranted) {
@@ -28,7 +28,7 @@ async function sendUserNotification() {
   }
 
   if (permissionGranted) {
-    sendNotification({ title: 'Tauri', body: 'Tauri is awesome!' });
+    sendNotification({ title: '久坐提醒', body: `您已经久坐了${minite}分钟了，请站起来休息一下，这是第${notificationCount}次提醒` });
   }
 }
 
@@ -57,7 +57,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         if (state.remainingTime <= 1) {
           switch (state.notificationMethod) {
             case 'desktop':
-              sendUserNotification()
+              sendUserNotification(state.seconds / 60, notificationCount)
               break
             case 'screen_lock':
               invoke('lock_screen').catch(console.error);

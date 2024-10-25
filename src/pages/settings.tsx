@@ -36,14 +36,14 @@ export default function Settings() {
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">设置</h1>
 
             <div className="mb-8">
-                <label className="flex items-center space-x-3 mb-3">
+                <label className="flex items-center justify-between mb-3">
+                    <span className="text-gray-700 font-medium">开机自启动</span>
                     <input
                         type="checkbox"
                         checked={isAutoStartEnabled}
                         onChange={toggleAutoStart}
                         className="form-checkbox h-5 w-5 text-blue-600"
                     />
-                    <span className="text-gray-700 font-medium">开机自启动</span>
                 </label>
             </div>
 
