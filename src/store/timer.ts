@@ -57,7 +57,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         if (state.remainingTime <= 1) {
           switch (state.notificationMethod) {
             case 'desktop':
-              sendUserNotification(state.seconds / 60, notificationCount)
+              sendUserNotification(state.seconds / 60, state.notificationCount + 1)
               break
             case 'screen_lock':
               invoke('lock_screen').catch(console.error);
