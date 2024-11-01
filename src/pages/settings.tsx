@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 import { useTimerStore } from '../store/timer';
-import { readTextFile, writeTextFile, BaseDirectory, exists, create } from '@tauri-apps/plugin-fs';
+import { readTextFile, writeTextFile, BaseDirectory, exists } from '@tauri-apps/plugin-fs';
 import { CONFIG_FILE } from "../config";
 
 export default function Settings() {
