@@ -6,7 +6,7 @@
 
 [中文版](README.CN.md) | English
 
-StandUp is a simple yet powerful sedentary reminder application designed to help you maintain healthy work habits and avoid health risks associated with prolonged sitting.[Download](https://github.com/JiuRanYa/StandUp/releases/tag/v0.2.0)
+StandUp is a simple yet powerful sedentary reminder application designed to help you maintain healthy work habits and avoid health risks associated with prolonged sitting.[Download](https://github.com/JiuRanYa/StandUp/releases/tag/v0.3.0)
 
 ## ✨ Key Features
 
