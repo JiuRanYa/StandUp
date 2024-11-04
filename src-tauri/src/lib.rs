@@ -29,10 +29,9 @@ fn pause_timer(window: WebviewWindow) {
 }
 #[tauri::command]
 fn update_tray_title(app: AppHandle, time_left: &str) {
-    let _ = app
-        .tray_by_id("main_tray")
-        .unwrap()
-        .set_title(Some(time_left.to_string()));
+    let tray = app.tray_by_id("main_tray").unwrap();
+    tray.set_title(Some(time_left.to_string()))
+        .expect("Failed to set tray title");
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
