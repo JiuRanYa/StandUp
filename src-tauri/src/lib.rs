@@ -52,7 +52,7 @@ pub fn run() {
                 .icon(app.default_window_icon().unwrap().clone())
                 .menu(&menu)
                 .menu_on_left_click(true)
-                .title("测试")
+                .title("")
                 .on_menu_event(move |app, event| {
                     let window = app.get_webview_window("main").unwrap();
                     match event.id().0.as_str() {
