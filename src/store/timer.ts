@@ -53,7 +53,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
     setNotificationMethod: (method) => set({ notificationMethod: method }),
     setShowTrayTime: (show) => set({ showTrayTime: show }),
     startTimer: async () => {
-        const { intervalId, isRunning } = get();
+        const { intervalId, isRunning, remainingTime } = get();
 
         if (isRunning) return;
 
@@ -63,12 +63,12 @@ export const useTimerStore = create<TimerState>((set, get) => ({
 
         const startNewTimer = () => {
             const startTime = Date.now();
-            const initialRemainingTime = get().seconds;
+            const currentRemainingTime = remainingTime;
 
             const newIntervalId = setInterval(() => {
                 set((state) => {
                     const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-                    const newRemainingTime = Math.max(initialRemainingTime - elapsedSeconds, 0);
+                    const newRemainingTime = Math.max(currentRemainingTime - elapsedSeconds, 0);
 
                     if (newRemainingTime <= 0) {
                         clearInterval(newIntervalId);
@@ -86,6 +86,7 @@ export const useTimerStore = create<TimerState>((set, get) => ({
                         }
 
                         setTimeout(() => {
+                            set({ remainingTime: state.seconds });
                             startNewTimer();
                         }, 1000);
 
