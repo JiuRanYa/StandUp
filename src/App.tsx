@@ -36,8 +36,17 @@ function App() {
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     const roundedValue = Math.round(value / 60) * 60;
+
+    // 如果正在运行，先停止计时
+    if (isRunning) {
+      pauseTimer();
+    }
+
+    // 设置新的时间并重置
     setSeconds(roundedValue);
-    if (!isRunning) setRemainingTime(roundedValue);
+    setRemainingTime(roundedValue);
+    setProgress(100);
+    setIsReset(true);
   };
 
   const handleReset = () => {

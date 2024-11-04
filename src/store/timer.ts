@@ -57,45 +57,59 @@ export const useTimerStore = create<TimerState>((set, get) => ({
             clearInterval(intervalId);
         }
 
-        set({ isRunning: true });
-        const newIntervalId = setInterval(() => {
-            set((state) => {
-                if (state.remainingTime <= 1) {
-                    switch (state.notificationMethod) {
-                        case 'desktop':
-                            sendUserNotification(state.seconds / 60, state.notificationCount + 1)
-                            break
-                        case 'screen_lock':
-                            invoke('lock_screen').catch(console.error);
-                            break
-                        case 'sound':
-                            console.log('sound')
-                            break
+        const startNewTimer = () => {
+            const startTime = Date.now();
+            const initialRemainingTime = get().seconds;
+
+            const newIntervalId = setInterval(() => {
+                set((state) => {
+                    const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+                    const newRemainingTime = Math.max(initialRemainingTime - elapsedSeconds, 0);
+
+                    if (newRemainingTime <= 0) {
+                        clearInterval(newIntervalId);
+
+                        switch (state.notificationMethod) {
+                            case 'desktop':
+                                sendUserNotification(state.seconds / 60, state.notificationCount + 1);
+                                break;
+                            case 'screen_lock':
+                                invoke('lock_screen').catch(console.error);
+                                break;
+                            case 'sound':
+                                console.log('sound');
+                                break;
+                        }
+
+                        setTimeout(() => {
+                            startNewTimer();
+                        }, 1000);
+
+                        return {
+                            remainingTime: state.seconds,
+                            notificationCount: state.notificationCount + 1,
+                        };
                     }
-                    return {
-                        remainingTime: state.seconds,
-                        notificationCount: state.notificationCount + 1
-                    };
-                }
-                const newRemainingTime = state.remainingTime - 1;
 
-                // 更新托盘标题
-                const minutes = Math.floor(newRemainingTime / 60);
-                const seconds = newRemainingTime % 60;
-                const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                invoke('update_tray_title', { timeLeft: timeString }).catch(console.error);
+                    const minutes = Math.floor(newRemainingTime / 60);
+                    const seconds = newRemainingTime % 60;
+                    const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    invoke('update_tray_title', { timeLeft: timeString }).catch(console.error);
 
-                return { remainingTime: newRemainingTime };
-            });
-        }, 1000);
-        set({ intervalId: newIntervalId });
+                    return { remainingTime: newRemainingTime };
+                });
+            }, 1000);
+
+            set({ intervalId: newIntervalId, isRunning: true });
+        };
+
+        startNewTimer();
     },
     pauseTimer: () => {
         const { intervalId } = get();
         if (intervalId) {
             clearInterval(intervalId);
         }
-        // 清除托盘标题
         invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
         set({ isRunning: false, intervalId: null });
     },
@@ -104,7 +118,6 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         if (intervalId) {
             clearInterval(intervalId);
         }
-        // 清除托盘标题
         invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
         set({ isRunning: false, intervalId: null, remainingTime: seconds });
     },
