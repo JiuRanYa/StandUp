@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 import { useTimerStore } from '../store/timer';
-import { readTextFile, writeTextFile, BaseDirectory, exists } from '@tauri-apps/plugin-fs';
-import { CONFIG_FILE } from "../config";
 
 export default function Settings() {
   const [isAutoStartEnabled, setIsAutoStartEnabled] = useState(false);
@@ -11,28 +9,11 @@ export default function Settings() {
 
   useEffect(() => {
     checkAutoStartStatus();
-    loadSettings();
   }, []);
 
   const checkAutoStartStatus = async () => {
     const enabled = await isEnabled();
     setIsAutoStartEnabled(enabled);
-  };
-
-  const loadSettings = async () => {
-    const exist = await exists(CONFIG_FILE, { baseDir: BaseDirectory.Config });
-    if (exist) {
-      const settings = await readTextFile(CONFIG_FILE, { baseDir: BaseDirectory.Config });
-      const parsedSettings = JSON.parse(settings);
-      setNotificationMethod(parsedSettings.notificationMethod);
-    }
-  };
-
-  const saveSettings = async () => {
-    const settings = {
-      notificationMethod,
-    };
-    await writeTextFile(CONFIG_FILE, JSON.stringify(settings), { baseDir: BaseDirectory.Config });
   };
 
   const toggleAutoStart = async () => {
@@ -42,12 +23,10 @@ export default function Settings() {
       await enable();
     }
     await checkAutoStartStatus();
-    await saveSettings();
   };
 
   const handleNotificationMethodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setNotificationMethod(event.target.value as 'desktop' | 'sound' | 'screen_lock');
-    saveSettings();
   };
 
   return (
