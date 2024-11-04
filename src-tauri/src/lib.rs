@@ -1,7 +1,7 @@
 use std::process::Command;
 use tauri::menu::{Menu, MenuItem};
 use tauri::tray::TrayIconBuilder;
-use tauri::{Emitter, Manager, WebviewWindow};
+use tauri::{App, AppHandle, Emitter, Manager, WebviewWindow};
 use tauri_plugin_autostart::MacosLauncher;
 
 #[tauri::command]
@@ -28,6 +28,14 @@ fn pause_timer(window: WebviewWindow) {
     window.emit("pause-timer", ()).unwrap();
 }
 
+#[tauri::command]
+fn update_tray_title(app: AppHandle) {
+    let _ = app
+        .tray_by_id("main_tray")
+        .unwrap()
+        .set_title(Some("123123"));
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -42,10 +50,11 @@ pub fn run() {
             let menu =
                 Menu::with_items(app, &[&start_timer_i, &pause_timer_i, &settings_i, &quit_i])?;
 
-            let _tray = TrayIconBuilder::new()
+            let _tray = TrayIconBuilder::with_id("main_tray")
                 .icon(app.default_window_icon().unwrap().clone())
                 .menu(&menu)
                 .menu_on_left_click(true)
+                .title("测试")
                 .on_menu_event(move |app, event| {
                     let window = app.get_webview_window("main").unwrap();
                     match event.id().0.as_str() {
@@ -68,7 +77,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             lock_screen,
             start_timer,
-            pause_timer
+            pause_timer,
+            update_tray_title
         ])
         .plugin(tauri_plugin_autostart::init(
             MacosLauncher::LaunchAgent,

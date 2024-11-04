@@ -69,16 +69,23 @@ export const useTimerStore = create<TimerState>((set, get) => ({
                             invoke('lock_screen').catch(console.error);
                             break
                         case 'sound':
-                            console.log('sounrd')
+                            console.log('sound')
                             break
-
                     }
                     return {
                         remainingTime: state.seconds,
                         notificationCount: state.notificationCount + 1
                     };
                 }
-                return { remainingTime: state.remainingTime - 1 };
+                const newRemainingTime = state.remainingTime - 1;
+
+                // 更新托盘标题
+                const minutes = Math.floor(newRemainingTime / 60);
+                const seconds = newRemainingTime % 60;
+                const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                invoke('update_tray_title', { timeLeft: timeString }).catch(console.error);
+
+                return { remainingTime: newRemainingTime };
             });
         }, 1000);
         set({ intervalId: newIntervalId });
@@ -88,6 +95,8 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         if (intervalId) {
             clearInterval(intervalId);
         }
+        // 清除托盘标题
+        invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
         set({ isRunning: false, intervalId: null });
     },
     resetTimer: () => {
@@ -95,6 +104,8 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         if (intervalId) {
             clearInterval(intervalId);
         }
+        // 清除托盘标题
+        invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
         set({ isRunning: false, intervalId: null, remainingTime: seconds });
     },
 }));
