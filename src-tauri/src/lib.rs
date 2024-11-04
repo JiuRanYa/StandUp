@@ -1,7 +1,7 @@
 use std::process::Command;
 use tauri::menu::{Menu, MenuItem};
 use tauri::tray::TrayIconBuilder;
-use tauri::{App, AppHandle, Emitter, Manager, WebviewWindow};
+use tauri::{AppHandle, Emitter, Manager, WebviewWindow};
 use tauri_plugin_autostart::MacosLauncher;
 
 #[tauri::command]
@@ -27,13 +27,12 @@ fn start_timer(window: WebviewWindow) {
 fn pause_timer(window: WebviewWindow) {
     window.emit("pause-timer", ()).unwrap();
 }
-
 #[tauri::command]
-fn update_tray_title(app: AppHandle) {
+fn update_tray_title(app: AppHandle, time_left: &str) {
     let _ = app
         .tray_by_id("main_tray")
         .unwrap()
-        .set_title(Some("123123"));
+        .set_title(Some(time_left.to_string()));
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
