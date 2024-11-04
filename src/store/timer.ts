@@ -9,11 +9,13 @@ interface TimerState {
     remainingTime: number;
     notificationCount: number;
     notificationMethod: 'desktop' | 'sound' | 'screen_lock';
+    showTrayTime: boolean;
     setSeconds: (seconds: number) => void;
     setIsRunning: (isRunning: boolean) => void;
     setRemainingTime: (remainingTime: number) => void;
     incrementNotificationCount: () => void;
     setNotificationMethod: (method: 'desktop' | 'sound' | 'screen_lock') => void;
+    setShowTrayTime: (show: boolean) => void;
     startTimer: () => Promise<void>;
     pauseTimer: () => void;
     resetTimer: () => void;
@@ -43,11 +45,13 @@ export const useTimerStore = create<TimerState>((set, get) => ({
     remainingTime: 1800,
     notificationCount: 0,
     notificationMethod: 'desktop',
+    showTrayTime: true,
     setSeconds: (seconds) => set({ seconds, remainingTime: seconds }),
     setIsRunning: (isRunning) => set({ isRunning }),
     setRemainingTime: (remainingTime) => set({ remainingTime }),
     incrementNotificationCount: () => set((state) => ({ notificationCount: state.notificationCount + 1 })),
     setNotificationMethod: (method) => set({ notificationMethod: method }),
+    setShowTrayTime: (show) => set({ showTrayTime: show }),
     startTimer: async () => {
         const { intervalId, isRunning } = get();
 
@@ -91,10 +95,12 @@ export const useTimerStore = create<TimerState>((set, get) => ({
                         };
                     }
 
-                    const minutes = Math.floor(newRemainingTime / 60);
-                    const seconds = newRemainingTime % 60;
-                    const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                    invoke('update_tray_title', { timeLeft: timeString }).catch(console.error);
+                    if (state.showTrayTime) {
+                        const minutes = Math.floor(newRemainingTime / 60);
+                        const seconds = newRemainingTime % 60;
+                        const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                        invoke('update_tray_title', { timeLeft: timeString }).catch(console.error);
+                    }
 
                     return { remainingTime: newRemainingTime };
                 });
@@ -106,19 +112,23 @@ export const useTimerStore = create<TimerState>((set, get) => ({
         startNewTimer();
     },
     pauseTimer: () => {
-        const { intervalId } = get();
+        const { intervalId, showTrayTime } = get();
         if (intervalId) {
             clearInterval(intervalId);
         }
-        invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
+        if (showTrayTime) {
+            invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
+        }
         set({ isRunning: false, intervalId: null });
     },
     resetTimer: () => {
-        const { seconds, intervalId } = get();
+        const { seconds, intervalId, showTrayTime } = get();
         if (intervalId) {
             clearInterval(intervalId);
         }
-        invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
+        if (showTrayTime) {
+            invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
+        }
         set({ isRunning: false, intervalId: null, remainingTime: seconds });
     },
 }));

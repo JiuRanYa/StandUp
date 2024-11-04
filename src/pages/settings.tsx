@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 import { useTimerStore } from '../store/timer';
+import { invoke } from '@tauri-apps/api/core';
 
 export default function Settings() {
   const [isAutoStartEnabled, setIsAutoStartEnabled] = useState(false);
-  const { notificationMethod, setNotificationMethod } = useTimerStore();
+  const {
+    notificationMethod,
+    setNotificationMethod,
+    showTrayTime,
+    setShowTrayTime
+  } = useTimerStore();
 
   useEffect(() => {
     checkAutoStartStatus();
@@ -40,6 +46,23 @@ export default function Settings() {
             type="checkbox"
             checked={isAutoStartEnabled}
             onChange={toggleAutoStart}
+            className="form-checkbox h-5 w-5 text-blue-600"
+          />
+        </label>
+      </div>
+
+      <div className="mb-8">
+        <label className="flex items-center justify-between mb-3">
+          <span className="text-gray-700 font-medium">在系统托盘显示剩余时间</span>
+          <input
+            type="checkbox"
+            checked={showTrayTime}
+            onChange={(e) => {
+              setShowTrayTime(e.target.checked);
+              if (!e.target.checked) {
+                invoke('update_tray_title', { timeLeft: '' }).catch(console.error);
+              }
+            }}
             className="form-checkbox h-5 w-5 text-blue-600"
           />
         </label>
