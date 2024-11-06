@@ -6,7 +6,7 @@
 
 [中文版](README.CN.md) | English
 
-StandUp is a simple yet powerful sedentary reminder application designed to help you maintain healthy work habits and avoid health risks associated with prolonged sitting.[Download](https://github.com/JiuRanYa/StandUp/releases/tag/v0.3.0)
+StandUp is a simple yet powerful sedentary reminder application designed to help you maintain healthy work habits and avoid health risks associated with prolonged sitting.
 
 ## ✨ Key Features
 
@@ -27,10 +27,14 @@ StandUp is a simple yet powerful sedentary reminder application designed to help
 
 ## 🚀 Quick Start
 
-1. Download and install the StandUp application.
+1. [Download](https://github.com/JiuRanYa/StandUp/releases/tag/v0.3.0) and install the StandUp application.
 2. Launch the app; it will automatically minimize to the system tray.
 3. Click the system tray icon to set your preferred reminder interval and method.
-4. Start working and let StandUp take care of your health!
+5. I have no apple developer id, so when you download this app, skip the mac security certificate:
+
+```
+sudo xattr -rd com.apple.quarantine /Applications/StandUp.app
+```
 
 ## 💡 Usage Tips
 
